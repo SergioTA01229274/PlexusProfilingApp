@@ -25,6 +25,11 @@ private slots:
     void on_selectFilePB_clicked();
 
     void on_positiveSlopePB_clicked();
+    
+    void on_TALPB_clicked();
+
+    void on_peakTempPB_clicked();
+
 
     void on_TALPB_clicked();
 
