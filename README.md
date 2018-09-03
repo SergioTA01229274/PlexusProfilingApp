@@ -1,2 +1,3 @@
-# Proyecto Estadstico Plexus
-Proyecto Final de Intro a la Carrera
+# Plexus Profiling App
+
+Statistical software developed in Python (statistical calculations) and C++ Qt (Graphic User Interface).
