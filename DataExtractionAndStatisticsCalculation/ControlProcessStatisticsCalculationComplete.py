@@ -4,7 +4,8 @@ import sys
 import random
 import shutil
 
-DestinyPath = sys.argv[1]  # """Necessary parameter to run the code. This variable has to be assigned to the specific route of the directory where the thermal profiles are."""
+#DestinyPath = "/Users/sergio/Documents/Prueba/Prueba2/Prueba3/Prueba4/Prueba5"
+DestinyPath = sys.argv[1]
 OriginPath = os.getcwd()
 os.chdir(DestinyPath)
 
@@ -13,12 +14,15 @@ Values2 = open("Values2.txt", 'w')
 directory = os.listdir(DestinyPath)
 ruta = str(DestinyPath)
 
-UserVariableElection = sys.argv[2] #"""Necessary parameter to run the code. The user has to choose which variable wants to analyze, either Time Above Liquids or Peak Temperature"""
+#UserVariableElection = "Peak Temperature"
+UserVariableElection = sys.argv[2]
 FilesDef = []
-numDocs = sys.argv[3]  # """Necessary parameter to run the code. This variable has to be assigned to the number of thermal profiles that the user wans to analyze."""
-
-UserElection = sys.argv[4]  # """Necessary parameter to run the code. This variable has to be assigned to the solder paste election of the user"""
+numDocs = int(sys.argv[3])
+#numDocs = 5
+UserElection = sys.argv[4]
+#UserElection = "Senju M40-LS720V-HF"
 nums = []
+
 
 def ordenar(dirw):
     FilesName = []
@@ -37,7 +41,6 @@ def ordenar(dirw):
 
 
 ordenar(directory)
-
 Warning1 = ""  #"""If the user insert a bigger number than the quantity of the files that are in the directory this warning has to be shown."""
 
 
@@ -48,13 +51,14 @@ def documents(Directory, num):
         PDF = FilesDef[len(FilesDef):(len(FilesDef) - num - 1): - 1]
         return PDF
     else:
-        Warning1 = "Aqui solo existen {0} archivos".format(len(FilesDef))
+        Warning1 = "Error"
+        print(Warning1)
         sys.exit()   #"""The program will end if the user insert a bigger number than the files quantity on the directory."""
 
 
 for x in documents(FilesDef, int(numDocs)):
     pdfNewFile = open(ruta + "/" + x, 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfNewFile)
+    pdfReader = PyPDF2.PdfFileReader(pdfNewFile, strict=False)
     pageObj2 = pdfReader.getPage(1)
     pageObj = pdfReader.getPage(0)
     text = pageObj.extractText()
@@ -88,7 +92,11 @@ for x in documents(FilesDef, int(numDocs)):
             firstPart = PositiveSlopeData[0:point]
             secondPart = PositiveSlopeData[point:end]
             term = firstPart + secondPart
-            Values2.write(term)
+            if float(term) > 100:
+                term = float(term)/60
+            else:
+                term = term
+            Values2.write(str(term))
             Values2.write(" ")
             PositiveSlopeData = PositiveSlopeData[end:]
         OutPut2.write("1")
@@ -186,7 +194,6 @@ for x in documents(FilesDef, int(numDocs)):
 OutPut2.close()
 Values2.close()
 pdfNewFile.close()
-
 Values_list = list()  # Matrix
 TimeAboveLiquidsMatrix = list()  # Matrix
 PeakTemperatureMatrix = list()  # Matrix
@@ -197,7 +204,8 @@ def FileReadingAndFilter():
     try:
         File = open("Values2.txt")
     except ValueError:
-        print("The file cannot be opened", end=" ")
+        print("Error")
+        sys.exit()
     if File:
         for line in File:
             TimeAboveLiquidsTerms = line.split(" ")
@@ -221,7 +229,6 @@ def FileReadingAndFilter():
 
 
 FileReadingAndFilter()
-
 TimeAboveLiquidsMatrixDef = []
 
 
@@ -273,9 +280,11 @@ SampleSizeCorrectionPT(PeakTemperatureMatrix)
 SampleSizePT = len(PeakTemperatureMatrixDef[0])
 SampleSizeTAL = len(TimeAboveLiquidsMatrixDef[0])
 
+
 Warning2 = ""  # """If there was an error generating the thermal profiles data this warning has to be shown to the user."""
 Warning3 = ""  # """If the number os samplesize is not in the range 4-10
 # we have to show this warning to the user."""
+
 
 DocMessage = open("OutPut2.txt", 'r')
 message = DocMessage.read()
@@ -288,10 +297,11 @@ while cont < len(conclutions):
     elif conclutions[cont] == "1":
         cont1 += 1
     cont += 1
+DocMessage.close()
 if cont1 == len(conclutions):
     SolderPaste1 = "Indium 8.9E Lead free"
     SolderPaste2 = "Indium 5.8LS Lead free"
-    SolderPaste3 = "Senju M40-LS720V-Hf"
+    SolderPaste3 = "Senju M40-LS720V-HF"
     SolderPaste4 = "Alpha OM 338 PT"
     SolderPaste5 = "Indium SMQ92H (Sn63Pb37)"
     MinTAL = 0  # MinimumTimeAboveLiquids
@@ -323,7 +333,6 @@ if cont1 == len(conclutions):
             MinPT = 204.00
             MaxPT = 224.00
             break
-
     d2 = float()
     D3 = float()
     D4 = float()
@@ -373,7 +382,8 @@ if cont1 == len(conclutions):
             break
         else:
             Warning3 = "Too few or too many data for SampleSize"
-    Results2 = open("Results2.txt", 'w')
+            print(Warning3)
+            sys.exit()
 
     def TimeAboveLiquidsCalculation(d2, D3, D4, A2):
         LSL_TAL = MinTAL
@@ -423,6 +433,7 @@ if cont1 == len(conclutions):
         UCLXBar_TAL = (A2 * RBar_TAL) + XBarBar_TAL
         CLXBar_TAL = XBarBar_TAL
         LCLXBar_TAL = XBarBar_TAL - (A2 * RBar_TAL)
+        print("A")
         print(Cpk_TAL)
         print(LCLR_TAL)
         print(UCLR_TAL)
@@ -430,6 +441,13 @@ if cont1 == len(conclutions):
         print(UCLXBar_TAL)
         print(CLXBar_TAL)
         print(LCLXBar_TAL)
+        print("B")
+        print(XBarW_TAL)
+        print("C")
+        print(RW_TAL)
+        print("D")
+        for i in range(len(TimeAboveLiquidsMatrixDef)):
+            print(TimeAboveLiquidsMatrixDef[i])
 
     def PeakTemperatureCalculation(d2, D3, D4, A2):
         XBarW_PT = list()
@@ -477,6 +495,7 @@ if cont1 == len(conclutions):
         UCLXBar_PT = (A2 * RBar_PT) + XBarBar_PT
         CLXBar_PT = XBarBar_PT
         LCLXBar_PT = XBarBar_PT - (A2 * RBar_PT)
+        print("A")
         print(Cpk_PT)
         print(LCLR_PT)
         print(UCLR_PT)
@@ -484,9 +503,15 @@ if cont1 == len(conclutions):
         print(UCLXBar_PT)
         print(CLXBar_PT)
         print(LCLXBar_PT)
-    DocMessage.close()
-    Results2.close()
-    nameDocs = ["Results2.txt", "Values2.txt", "OutPut2.txt"]
+        print("B")
+        print(XBarW_PT)
+        print("C")
+        print(RW_PT)
+        print("D")
+        for i in range(len(PeakTemperatureMatrixDef)):
+            print(PeakTemperatureMatrixDef[i])
+
+    nameDocs = ["Values2.txt", "OutPut2.txt"]
     if UserVariableElection == "Time Above Liquidus":
         TimeAboveLiquidsCalculation(d2, D3, D4, A2)
         for i in nameDocs:
@@ -506,5 +531,7 @@ if cont1 == len(conclutions):
             shutil.move(i, OriginPath)
         # """We have to show all this data to the user on the user nterface."""
 else:
-    Warning2 = "Impossible to calculate. Try to generate the data again."
-    # """If there is an error on one data of one thermal profile this warning has to be shown."""
+    Warning2 = "Error"
+    print(Warning2)
+    sys.exit()
+# """If there is an error on one data of one thermal profile this warning has to be shown."""
