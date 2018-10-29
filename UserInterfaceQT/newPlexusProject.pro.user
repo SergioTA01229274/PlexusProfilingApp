@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.4.1, 2017-10-26T19:43:58. -->
+<!-- Written by QtCreator 4.4.1, 2017-11-19T15:00:11. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -309,8 +309,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">newPlexusProject</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/Fer/Google Drive/Proyecto Plexus/newPlexusProject/newPlexusProject.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">newPlexusProject2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/Fer/Google Drive/Primer Semestre - ISC/Proyecto Plexus/newPlexusProject/newPlexusProject.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">newPlexusProject.pro</value>

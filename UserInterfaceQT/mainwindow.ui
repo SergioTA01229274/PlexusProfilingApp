@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>889</width>
-    <height>570</height>
+    <width>819</width>
+    <height>585</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="preControlTabW">
      <attribute name="title">
@@ -437,7 +437,7 @@
        <rect>
         <x>10</x>
         <y>130</y>
-        <width>711</width>
+        <width>791</width>
         <height>51</height>
        </rect>
       </property>
@@ -497,20 +497,53 @@
        </property>
       </column>
      </widget>
+     <widget class="QLabel" name="workDirectoryL">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>450</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { 
+	background-color: rgb(0,112,192); 
+	border-radius: 3px; 
+	color: rgb(255,255,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Work Directory:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="directoryL">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>450</y>
+        <width>331</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="controlTabW">
      <property name="contextMenuPolicy">
       <enum>Qt::DefaultContextMenu</enum>
      </property>
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Control</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>0</y>
-        <width>790</width>
+        <width>792</width>
         <height>86</height>
        </rect>
       </property>
@@ -592,35 +625,6 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QComboBox" name="familyCBC">
-         <item>
-          <property name="text">
-           <string>Select Family...</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Video</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>DSR</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Pics</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>E6mil</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="0" column="2">
         <widget class="QLabel" name="modelLC">
          <property name="styleSheet">
@@ -657,23 +661,6 @@
        </item>
        <item row="0" column="3">
         <widget class="QComboBox" name="modelCBC"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="groupLC">
-         <property name="styleSheet">
-          <string notr="true">QLabel { 
-	background-color: rgb(0,112,192); 
-	border-radius: 3px; 
-	color: rgb(255,255,255);
-}</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Group:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::RichText</enum>
-         </property>
-        </widget>
        </item>
        <item row="1" column="2">
         <widget class="QLabel" name="solderPasteLc">
@@ -725,9 +712,6 @@
           </property>
          </item>
         </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="groupCBC"/>
        </item>
        <item row="1" column="5">
         <widget class="QComboBox" name="profileCBC">
@@ -805,6 +789,55 @@
          <item>
           <property name="text">
            <string>Bottom</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="groupCBC"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="groupLC">
+         <property name="styleSheet">
+          <string notr="true">QLabel { 
+	background-color: rgb(0,112,192); 
+	border-radius: 3px; 
+	color: rgb(255,255,255);
+}</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Group:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="familyCBC">
+         <item>
+          <property name="text">
+           <string>Select Family...</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Video</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DSR</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pics</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>E6mil</string>
           </property>
          </item>
         </widget>
@@ -966,8 +999,8 @@
      <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>120</y>
+        <x>360</x>
+        <y>110</y>
         <width>271</width>
         <height>141</height>
        </rect>
@@ -1005,6 +1038,59 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="CPKValueL">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>120</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="indent">
+       <number>-4</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CPKL">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>100</y>
+        <width>86</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { 
+	background-color: rgb(0,112,192); 
+	border-radius: 3px; 
+	color: rgb(255,255,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;CPK:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::RichText</enum>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -1013,7 +1099,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>889</width>
+     <width>819</width>
      <height>22</height>
     </rect>
    </property>

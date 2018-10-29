@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "auxwindow.h"
 #include <QApplication>
 
 #include <QtWidgets/QApplication>
@@ -8,7 +9,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.resize(800,500);
+    w.setWindowTitle("Plexus Project");
+    w.resize(850,550);
     w.show();
 
     return a.exec();
